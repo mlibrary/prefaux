@@ -3,10 +3,10 @@ require "yaml"
 
 class Infrastructure < Output
   def to_h
-    @infrastructure ||= {
+    @infrastructure ||= stringify_keys({
       base_dir: opts.instance_name,
       bind: "#{opts.apache_app_host_priv_ip}:#{opts.apache_port}",
-      redis: opts.redis.each_with_index.map{|v, i| [i,v]}.to_h,
+      redis: opts.redis.each_with_index.map{|v, i| [i+1,v]}.to_h,
       db: {
         adapter: (db_adapter = "mysql2"),
         username: opts.db_user_name,
@@ -16,7 +16,7 @@ class Infrastructure < Output
         database: opts.db_name,
         url: "#{db_adapter}://#{opts.db_user_name}:#{opts.db_user_password}@#{opts.target_db_hostname}:#{db_port}/#{opts.db_name}"
       }
-    }
+    })
   end
 
   def keys
@@ -25,7 +25,6 @@ class Infrastructure < Output
       :apache_app_host_priv_ip,
       :apache_port,
       :redis,
-      :db_adapter,
       :db_user_name,
       :db_user_password,
       :target_db_hostname,

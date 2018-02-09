@@ -22,20 +22,20 @@ File.write(
 )
 
 # Write instance.yml
-`mkdir -p #{options.output_dir}/fauxpaas/instances`
+`mkdir -p #{options.output_dir}/fauxpaas/data/instances/#{name}`
 File.write(
-  "#{options.output_dir}/fauxpaas/instance.yml",
+  "#{options.output_dir}/fauxpaas/data/instances/#{name}/instance.yml",
   Instance.new(options).validate!.to_s
 )
 
 # Write inventory and symlink stage
-`mkdir -p #{options.output_dir}/fauxpaas/instances`
+`mkdir -p #{options.output_dir}/fauxpaas/data/instances`
 File.write(
-  "#{options.output_dir}/fauxpaas/hosts.rb",
+  "#{options.output_dir}/fauxpaas/data/instances/#{name}/hosts.rb",
   Inventory.new(options).validate!.to_s
 )
-`mkdir -p #{options.output_dir}/fauxpaas/stages`
-Dir.chdir("#{options.output_dir}/fauxpaas/stages") do
+`mkdir -p #{options.output_dir}/fauxpaas/data/stages`
+Dir.chdir("#{options.output_dir}/fauxpaas/data/stages") do
   `ln -s ../instances/#{name}/hosts.rb #{name}.rb`
 end
 

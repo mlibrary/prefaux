@@ -14,10 +14,7 @@ class Options < OpenStruct
   def parse
     parser.parse!
     self.instance_name = self.puma_svc_app_name
-    unless self.output_dir
-      puts "Please specify --output DIR"
-      exit 1
-    end
+    self.output_dir ||= File.join(Dir.pwd, "#{self.instance_name}-out")
     self
   end
   alias_method :parse!, :parse
@@ -35,15 +32,11 @@ class Options < OpenStruct
       opts.separator ""
       opts.separator "Specific options:"
 
-      opts.on("-o", "--output PATH", "Path where output should be written") do |o|
-        self.output_dir = o
-      end
-
-      opts.on("-r", "--[no]-rails", "Whether or not this is a rails app.") do |r|
+      opts.on("-r", "--[no-]rails", "Whether or not this is a rails app.") do |r|
         self.rails = r
       end
 
-      opts.on("-e", "--rails-env", "The rails env #{default(:rails_env)}") do |env|
+      opts.on("-e", "--rails-env ENV", "The rails env #{default(:rails_env)}") do |env|
         self.rails_env = env
       end
 
@@ -74,6 +67,10 @@ class Options < OpenStruct
         end
       end
 
+      opts.on("-o", "--output PATH", "Path where output should be written. Optional.") do |o|
+        self.output_dir = o
+      end
+
       opts.on("-h", "--help", "Print this help") do
         puts opts
         exit
@@ -83,7 +80,7 @@ class Options < OpenStruct
 
   def default(field)
     if send(field) != :missing
-      "(default: #{field})"
+      "(default: #{self.send(field)})"
     else
       ""
     end

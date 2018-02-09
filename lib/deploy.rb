@@ -3,16 +3,16 @@ require "yaml"
 
 class Deploy < Output
   def to_h
-    @deploy ||= {
+    @deploy ||= stringify_keys({
       appname: opts.instance_name,
       deployer_env: opts.rails ? "rails.capfile" : "norails.capfile",
       deploy_dir: opts.target_deploy_path,
       rails_env: opts.rails_env,
       assets_prefix: opts.assets_prefix,
       systemd_services: [
-        "app-puma@#{instance_name}.service"
+        "app-puma@#{opts.instance_name}.service"
       ]
-    }
+    })
   end
 
   def keys

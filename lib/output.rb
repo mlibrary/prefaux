@@ -1,3 +1,5 @@
+require "json"
+
 class Output
   def initialize(opts)
     @opts = opts
@@ -24,6 +26,10 @@ class Output
       raise KeyError, "Missing keys:\n\t#{missing.join(" :")}"
     end
     self
+  end
+
+  def stringify_keys(hash)
+    JSON.parse(JSON.dump(hash))
   end
 
   private

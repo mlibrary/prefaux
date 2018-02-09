@@ -4,7 +4,7 @@ class Inventory < Output
   def to_s
     @inventory ||= opts.hosts.map do |host|
       "server '#{host}', roles: [:app]"
-    end.join("\n")
+    end.join("\n").concat("\n")
   end
 
   def keys

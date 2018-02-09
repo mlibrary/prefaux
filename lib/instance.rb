@@ -3,7 +3,7 @@ require "yaml"
 
 class Instance < Output
   def to_h
-    @instance ||= {
+    @instance ||= stringify_keys({
       deploy: {
         url: "https://github.com/mlibrary/faux-deploy.git",
         commitish: opts.instance_name
@@ -24,7 +24,7 @@ class Instance < Output
           commitish: opts.instance_name
         }
       ]
-    }
+    })
   end
 
   def keys
