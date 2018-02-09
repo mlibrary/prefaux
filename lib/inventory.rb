@@ -1,0 +1,13 @@
+require_relative "output"
+
+class Inventory < Output
+  def to_s
+    @inventory ||= opts.hosts.map do |host|
+      "server '#{host}', roles: [:app]"
+    end.join("\n")
+  end
+
+  def keys
+    [:hosts]
+  end
+end
