@@ -1,31 +1,29 @@
+require "tmpdir"
 
-
-puts "Pushing to faux-deploy"
-Dir.mktmpdir do |dir|
-  Dir.chdir(dir) do
-    `git clone --depth 1 https://github.com/mlibrary/faux-deploy.git .`
-    `git checkout -b #{name}`
-    File.write("deploy.yml", YAML.dump(output.deploy))
-    `git add deploy.yml`
-    `git commit -m "prefaux adds deploy.yml for #{name}`
-    `git push -u origin #{name}`
+class Push
+  def initialize(dir, repo, branch)
+    @dir = dir
+    @repo = repo
+    @branch = branch
   end
-end
 
-puts ""
-puts "Pushing to faux-infrastructure"
-Dir.mktmpdir do |dir|
-  Dir.chdir(dir) do
-    `git clone --depth 1 https://github.com/mlibrary/faux-infrastructure.git .`
-    `git checkout -b #{name}`
-    File.write("infrastructure.yml", YAML.dump(output.infrastructure))
-    `git add infrastructure.yml`
-    `git commit -m "prefaux adds infrastructure.yml for #{name}`
-    `git push -u origin #{name}`
+  def run
+    Dir.mktmpdir do |tmpdir|
+      Dir.chdir(tmpdir) do
+        `git clone --depth 1 #{repo} .`
+        `git checkout -b #{branch}`
+        `cp -R #{dir}/* .`
+        require "pry"; binding.pry
+        `git add .`
+        binding.pry
+        `git commit -m "prefaux pushed"`
+        `git push -u origin #{branch}`
+      end
+    end
+    true
   end
+
+  private
+
+  attr_reader :dir, :repo, :branch
 end
-
-puts ""
-puts "Completed successfully"
-
-
