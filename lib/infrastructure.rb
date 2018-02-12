@@ -4,7 +4,7 @@ require "yaml"
 class Infrastructure < Output
   def to_h
     @infrastructure ||= stringify_keys({
-      base_dir: opts.instance_name,
+      base_dir: opts.target_deploy_path,
       bind: "#{opts.apache_app_host_priv_ip}:#{opts.apache_port}",
       redis: opts.redis.each_with_index.map{|v, i| [i+1,v]}.to_h,
       db: {
@@ -21,7 +21,7 @@ class Infrastructure < Output
 
   def keys
     [
-      :instance_name,
+      :target_deploy_path,
       :apache_app_host_priv_ip,
       :apache_port,
       :redis,

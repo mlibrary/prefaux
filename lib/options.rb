@@ -11,8 +11,8 @@ class Options < OpenStruct
     })
   end
 
-  def parse
-    parser.parse!
+  def parse(args)
+    parser.parse!(args)
     self.instance_name = self.puma_svc_app_name
     self.output_dir ||= File.join(Dir.pwd, "#{self.instance_name}-out")
     self
