@@ -12,7 +12,7 @@ class Options < OpenStruct
   end
 
   def parse(args)
-    parser.parse!(args)
+    parser.parse!(args.empty? ? ["--help"] : args)
     self.instance_name = self.puma_svc_app_name
     self.output_dir ||= File.join(Dir.pwd, "#{self.instance_name}-out")
     self
