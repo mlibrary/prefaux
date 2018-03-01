@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/run_command"
+require_relative "../lib/prefaux/files_command"
 
-RunCommand.new(ARGV).execute
+Prefaux::FilesCommand.new(ARGV).execute

@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require_relative "../lib/prefaux/githubber"
+require "optparse"
+require "pathname"
+
+ARGV << "-h" if ARGV.empty?
+branch = nil
+team = nil
+OptionParser.new do |opts|
+  opts.on("-b", "--branch BRANCH", "Branch name") do |b|
+    branch = b
+  end
+  opts.on("-t", "--team TEAM", "Team name") do |t|
+    team = t
+  end
+  opts.on("-h", "--help", "Print this help") do
+    puts opts
+    exit
+  end
+end.parse!
+
+raise ArgumentError unless branch
+raise ArgumentError unless team
+
+Prefaux::Githubber.new(branch, team)
+  .run
+

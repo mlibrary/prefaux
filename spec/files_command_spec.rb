@@ -1,9 +1,9 @@
 require "yaml"
 require "pathname"
-require_relative "../lib/run_command"
+require_relative "../lib/prefaux/files_command"
 require "fakefs/spec_helpers"
 
-RSpec.describe RunCommand do
+RSpec.describe Prefaux::FilesCommand do
   include FakeFS::SpecHelpers
 
   let(:fixture_path) { File.join(File.dirname(__FILE__), "fixtures") }
