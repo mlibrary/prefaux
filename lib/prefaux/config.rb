@@ -1,10 +1,16 @@
+require "pathname"
+require "ettin"
+
 module Prefaux
   class << self
     attr_reader :settings
     attr_writer :env
 
     def root
-      @root ||= Pathname.new(__FILE__).dirname.parent
+      @root ||= Pathname.new(__FILE__)
+        .dirname
+        .parent
+        .parent
     end
 
     def env
@@ -18,3 +24,5 @@ module Prefaux
 
   end
 end
+
+Prefaux.root
