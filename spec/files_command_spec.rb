@@ -14,7 +14,7 @@ RSpec.describe Prefaux::FilesCommand do
       " --rails-env rails_testing" \
       " --redis 1.redis.com,2.redis.com" \
       " --hosts yuengling,goatmilk-1,chianti" \
-      " --source https://github.com/mlibrary/closet.git" \
+      " --source git@github.com:mlibrary/closet.git" \
       " -f #{prevars_path}" \
       " -o #{outpath}"
   end
@@ -77,30 +77,30 @@ RSpec.describe Prefaux::FilesCommand do
     let(:subject) { YAML.load(File.read(path)) }
     it "sets source.url" do
       expect(subject["source"]["url"]).to eql(
-        "https://github.com/mlibrary/closet.git"
+        "git@github.com:mlibrary/closet.git"
       )
     end
     it "sets source" do
       expect(subject["source"]).to eql({
-        "url" => "https://github.com/mlibrary/closet.git",
+        "url" => "git@github.com:mlibrary/closet.git",
         "commitish" => "master"
       })
     end
     it "sets deploy" do
       expect(subject["deploy"]).to eql({
-        "url" => "https://github.com/mlibrary/faux-deploy.git",
+        "url" => "git@github.com:mlibrary/faux-deploy.git",
         "commitish" => "fake-testing"
       })
     end
     it "sets shared" do
       expect(subject["shared"]).to contain_exactly({
-        "url" => "https://github.com/mlibrary/faux-infrastructure.git",
+        "url" => "git@github.com:mlibrary/faux-infrastructure.git",
         "commitish" => "fake-testing"
       })
     end
     it "sets unshared" do
       expect(subject["unshared"]).to contain_exactly({
-        "url" => "https://github.com/mlibrary/faux-dev.git",
+        "url" => "git@github.com:mlibrary/faux-dev.git",
         "commitish" => "fake-testing"
       })
     end

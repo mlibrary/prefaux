@@ -6,7 +6,7 @@ module Prefaux
     def to_h
       @instance ||= stringify_keys({
         deploy: {
-          url: "https://github.com/mlibrary/faux-deploy.git",
+          url: "git@github.com:mlibrary/faux-deploy.git",
           commitish: opts.instance_name
         },
         source: {
@@ -15,13 +15,13 @@ module Prefaux
         },
         shared: [
           {
-            url: "https://github.com/mlibrary/faux-infrastructure.git",
+            url: "git@github.com:mlibrary/faux-infrastructure.git",
             commitish: opts.instance_name
           }
         ],
         unshared: [
           {
-            url: "https://github.com/mlibrary/faux-dev.git",
+            url: "git@github.com:mlibrary/faux-dev.git",
             commitish: opts.instance_name
           }
         ]
