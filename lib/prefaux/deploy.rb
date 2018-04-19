@@ -11,7 +11,7 @@ module Prefaux
         rails_env: opts.rails_env,
         assets_prefix: opts.assets_prefix,
         systemd_services: [
-          "app-puma@#{opts.instance_name}.service"
+          "#{opts.instance_name}.target"
         ]
       })
     end

@@ -36,7 +36,7 @@ RSpec.describe Prefaux::FilesCommand do
     it { expect(subject["assets_prefix"]).to eql("assets") }
     it "sets systemd_services" do
       expect(subject["systemd_services"]).to contain_exactly(
-        "app-puma@fake-testing.service"
+        "fake-testing.target"
       )
     end
   end
