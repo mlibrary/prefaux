@@ -46,7 +46,7 @@ RSpec.describe Prefaux::FilesCommand do
     let(:subject) { YAML.load(File.read(path)) }
 
     it { expect(subject["base_dir"]).to eql("/some/path/fake-testing") }
-    it { expect(subject["bind"]).to eql("127.0.0.1:30060") }
+    it { expect(subject["bind"]).to eql("tcp://127.0.0.1:30060") }
     it "sets redis" do
       expect(subject["redis"]).to eql(
         "1" => "1.redis.com",
