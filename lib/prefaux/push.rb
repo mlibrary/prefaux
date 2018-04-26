@@ -49,4 +49,18 @@ module Prefaux
     attr_reader :repo, :branch
   end
 
+  class RsyncPush
+    def initialize(source, dest)
+      @source = source
+      @dest = dest
+    end
+
+    def run
+      system("rsync --recursive --links --quiet #{source}/* #{dest}/")
+    end
+
+    private
+    attr_reader :source, :dest
+  end
+
 end
