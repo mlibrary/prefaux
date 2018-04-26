@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require_relative "../lib/prefaux/githubber"
+require_relative "../lib/prefaux"
 require "optparse"
 require "pathname"
 
@@ -24,6 +24,7 @@ end.parse!
 raise ArgumentError unless branch
 raise ArgumentError unless team
 
+Prefaux.load_settings!
 Prefaux::Githubber.new(branch, team)
   .run
 
