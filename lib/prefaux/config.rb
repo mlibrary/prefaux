@@ -1,3 +1,6 @@
+require "pathname"
+require "ettin"
+
 module Prefaux
   class << self
     attr_reader :settings
