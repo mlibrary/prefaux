@@ -16,6 +16,7 @@ module Prefaux
         FullPush.new(subdir, repo, instance_name).run
       end
       push_dev
+      push_instance
     end
 
     private
@@ -36,6 +37,11 @@ module Prefaux
       repo = "git@github.com:mlibrary/faux-dev.git"
       puts "Creating branch #{repo} #{instance_name}"
       EmptyPush.new(repo, instance_name).run
+    end
+
+    def push_instance
+      puts "Pushing instance to #{options.instance_dest}"
+      RsyncPush.new(dir/"fauxpaas", options.instance_dest).run
     end
   end
 

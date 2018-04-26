@@ -6,7 +6,7 @@ module Prefaux
     def to_h
       @infrastructure ||= stringify_keys({
         base_dir: opts.target_deploy_path,
-        bind: "#{opts.apache_app_host_priv_ip}:#{opts.apache_port}",
+        bind: "tcp://#{opts.apache_app_host_priv_ip}:#{opts.apache_port}",
         redis: opts.redis.each_with_index.map{|v, i| [i+1,v]}.to_h,
         db: {
           adapter: (db_adapter = "mysql2"),
