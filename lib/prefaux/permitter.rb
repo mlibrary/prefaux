@@ -5,7 +5,7 @@ module Prefaux
   # Permits the fauxpaas team to read the github repo
   class Permitter
     def initialize(repo)
-      @repo = File.basename(repo)
+      @repo = File.basename(repo).split(".").first
       @client = Octokit::Client.new(access_token: token)
     end
 
