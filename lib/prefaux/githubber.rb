@@ -1,3 +1,4 @@
+require_relative "config"
 require "octokit"
 
 module Prefaux
