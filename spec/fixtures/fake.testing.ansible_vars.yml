@@ -5,7 +5,7 @@ apache_port: 30060
 apache_app_host_priv_ip: 127.0.0.1
 apache_ssl_key: www.example.com.key
 apache_ssl_crt: www.example.com.crt
-apache_url_root: "/"
+apache_url_root: "/some/relative/url/root"
 apache_aliases: []
 apache_whitelisted_ips:
 - 34.35.36.37

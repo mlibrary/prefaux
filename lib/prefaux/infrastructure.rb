@@ -8,6 +8,7 @@ module Prefaux
         base_dir: opts.target_deploy_path,
         bind: "tcp://#{opts.apache_app_host_priv_ip}:#{opts.apache_port}",
         redis: opts.redis.each_with_index.map{|v, i| [i+1,v]}.to_h,
+        relative_url_root: opts.apache_url_root,
         db: {
           adapter: (db_adapter = "mysql2"),
           username: opts.db_user_name,
@@ -25,6 +26,7 @@ module Prefaux
         :target_deploy_path,
         :apache_app_host_priv_ip,
         :apache_port,
+        :apache_url_root,
         :redis,
         :db_user_name,
         :db_user_password,
