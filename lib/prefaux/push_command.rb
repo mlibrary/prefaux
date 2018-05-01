@@ -1,4 +1,5 @@
 require_relative "push"
+require_relative "permitter"
 require "fileutils"
 
 module Prefaux
@@ -41,6 +42,13 @@ module Prefaux
     def push_instance
       puts "Pushing instance to #{options.instance_dest}"
       RsyncPush.new(dir/"fauxpaas", options.instance_dest).run
+    end
+
+    def permit_source
+      if options.source.match?(/github.com[:\/]/i)
+        puts "Permitting fauxpaas to read from Github source"
+        Permitter.new(options.source).execute
+      end
     end
   end
 
