@@ -17,11 +17,7 @@ module Prefaux
 
     def faux_team
       client.organization_teams(org)
-        .find{|team| team.name == faux_team}
-    end
-
-    def faux_team
-      Prefaux.settings.faux_team
+        .find{|team| team.name == Prefaux.settings.faux_team}
     end
 
     def token
