@@ -17,6 +17,7 @@ module Prefaux
       end
       push_dev
       push_instance
+      permit_source
     end
 
     private
