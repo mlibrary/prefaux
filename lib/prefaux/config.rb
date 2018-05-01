@@ -25,4 +25,4 @@ module Prefaux
   end
 end
 
-Prefaux.root
+Prefaux.load_settings!
