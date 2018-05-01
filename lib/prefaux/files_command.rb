@@ -1,4 +1,3 @@
-require_relative "options"
 require_relative "deploy"
 require_relative "infrastructure"
 require_relative "instance"
@@ -8,8 +7,8 @@ require "pathname"
 
 module Prefaux
   class FilesCommand
-    def initialize(arg_list)
-      @arg_list = arg_list
+    def initialize(options)
+      @options = options
     end
 
     def execute
@@ -53,11 +52,7 @@ module Prefaux
     end
 
     private
-    attr_reader :arg_list
-
-    def options
-      @options ||= Options.new.parse(arg_list)
-    end
+    attr_reader :options
 
     def name
       options.instance_name

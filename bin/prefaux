@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/prefaux/options"
+require_relative "../lib/prefaux/files_command"
+require_relative "../lib/prefaux/push_options"
+require_relative "../lib/prefaux/push_command"
+
+options = Prefaux::Options.new.parse(ARGV)
+Prefaux::FilesCommand.new(options).execute
+
+push_options = Prefaux::PushOptions.new.parse(["--dir", options.output_dir])
+Prefaux::PushCommand.new(push_options).execute

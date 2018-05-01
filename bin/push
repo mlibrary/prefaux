@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative "../lib/prefaux/push_options"
 require_relative "../lib/prefaux/push_command"
 
-Prefaux::PushCommand.new(ARGV).execute
+options = Prefaux::PushOptions.new.parse(ARGV)
+Prefaux::PushCommand.new(options).execute

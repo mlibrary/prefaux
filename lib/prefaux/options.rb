@@ -29,7 +29,7 @@ module Prefaux
           "It generates the artifacts needed by fauxpaas from those created\n" \
           "by predeploy.\n" \
           "Usage:\n" \
-          "prefaux [options]"
+          "build [options]"
         opts.separator ""
         opts.separator "Specific options:"
 

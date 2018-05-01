@@ -1,5 +1,6 @@
 require "yaml"
 require "pathname"
+require_relative "../lib/prefaux/options"
 require_relative "../lib/prefaux/files_command"
 require "fakefs/spec_helpers"
 
@@ -18,7 +19,8 @@ RSpec.describe Prefaux::FilesCommand do
       " -f #{prevars_path}" \
       " -o #{outpath}"
   end
-  let(:cmd) { described_class.new(args.split) }
+  let(:options) { Prefaux::Options.new.parse(args.split)  }
+  let(:cmd) { described_class.new(options) }
 
   before(:each) do
     FakeFS::FileSystem.clone(prevars_path)

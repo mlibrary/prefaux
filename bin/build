@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative "../lib/prefaux/options"
 require_relative "../lib/prefaux/files_command"
 
-Prefaux::FilesCommand.new(ARGV).execute
+options = Prefaux::Options.new.parse(ARGV)
+Prefaux::FilesCommand.new(options).execute

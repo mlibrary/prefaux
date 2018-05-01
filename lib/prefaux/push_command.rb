@@ -1,11 +1,10 @@
-require_relative "push_options"
 require_relative "push"
 require "fileutils"
 
 module Prefaux
   class PushCommand
-    def initialize(arg_list)
-      @options = PushOptions.new.parse(arg_list)
+    def initialize(options)
+      @options = options
     end
 
     def execute
