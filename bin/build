@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "bundler/setup"
 require_relative "../lib/prefaux/options"
 require_relative "../lib/prefaux/files_command"
 

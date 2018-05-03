@@ -1,3 +1,4 @@
+require_relative "config"
 require_relative "push"
 require_relative "permitter"
 require "fileutils"
