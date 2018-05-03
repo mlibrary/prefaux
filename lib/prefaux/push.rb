@@ -1,6 +1,16 @@
 require "tmpdir"
+require "open3"
 
 module Prefaux
+  class PushCheck
+    def run
+      _, _, status = Open3.capture3("ssh -T git@github.com")
+      if status.exitstatus == 255
+        raise RuntimeError, "Could not connect to github over ssh. Are your credentials loaded?"
+      end
+    end
+  end
+
   class FullPush
     def initialize(dir, repo, branch)
       @dir = dir

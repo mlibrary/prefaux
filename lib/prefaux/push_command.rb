@@ -10,6 +10,7 @@ module Prefaux
     end
 
     def execute
+      PuchCheck.new.run
       ["deploy", "infrastructure"].each do |aspect|
         repo = "git@github.com:mlibrary/faux-#{aspect}.git"
         subdir = (dir/"faux-#{aspect}").expand_path
