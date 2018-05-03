@@ -2,6 +2,7 @@ require_relative "deploy"
 require_relative "infrastructure"
 require_relative "instance"
 require_relative "inventory"
+require_relative "permissions"
 require "fileutils"
 require "pathname"
 
@@ -16,6 +17,7 @@ module Prefaux
       write(infrastructure_path,  infrastructure)
       write(instance_path,        instance)
       write(inventory_path,       inventory)
+      write(permissions_path,     permissions)
       write_stage
     end
 
@@ -49,6 +51,14 @@ module Prefaux
 
     def inventory
       Inventory.new(options).validate!
+    end
+
+    def permissions_path
+      "#{options.output_dir}/fauxpaas/data/instances/#{name}/permissions.yml"
+    end
+
+    def permissions
+      Permissions.new(options).validate!
     end
 
     private

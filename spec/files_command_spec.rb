@@ -2,6 +2,7 @@ require "yaml"
 require "pathname"
 require_relative "../lib/prefaux/options"
 require_relative "../lib/prefaux/files_command"
+require "pp"
 require "fakefs/spec_helpers"
 
 RSpec.describe Prefaux::FilesCommand do
@@ -12,6 +13,7 @@ RSpec.describe Prefaux::FilesCommand do
   let(:outpath) { Pathname.new(__FILE__).parent+"fake-testing-out" }
   let(:args) do
     "--rails" \
+      " --tech-lead alice" \
       " --rails-env rails_testing" \
       " --redis 1.redis.com,2.redis.com" \
       " --hosts yuengling,goatmilk-1,chianti" \
@@ -106,6 +108,29 @@ RSpec.describe Prefaux::FilesCommand do
         "url" => "git@github.com:mlibrary/faux-dev.git",
         "commitish" => "fake-testing"
       })
+    end
+  end
+
+  describe "permissions.yml" do
+    let(:path) { outpath+"fauxpaas"+"data"+"instances"+"fake-testing"+"permissions.yml" }
+    let(:subject) { YAML.load(File.read(path)) }
+    it "writes the file" do
+      expect(File.exist?(path)).to be true
+    end
+    it "sets read to []" do
+      expect(subject["restart"]).to eql([])
+    end
+    it "sets restart to []" do
+      expect(subject["restart"]).to eql([])
+    end
+    it "sets edit to []" do
+      expect(subject["edit"]).to eql([])
+    end
+    it "sets deploy to user_deploy_users" do
+      expect(subject["deploy"]).to contain_exactly("me", "you")
+    end
+    it "sets admin to [tech-lead]" do
+      expect(subject["admin"]).to contain_exactly("alice")
     end
   end
 

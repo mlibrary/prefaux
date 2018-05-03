@@ -34,6 +34,10 @@ module Prefaux
         opts.separator ""
         opts.separator "Specific options:"
 
+        opts.on("-t", "--tech-lead LEAD", "The uniqname of the single technical lead of the instance.") do |t|
+          self.tech_lead = t.strip
+        end
+
         opts.on("-r", "--[no-]rails", "Whether or not this is a rails app.") do |r|
           self.rails = r
         end
