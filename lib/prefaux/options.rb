@@ -1,5 +1,6 @@
 require "ostruct"
 require "optparse"
+require_relative "config"
 
 module Prefaux
   class Options < OpenStruct
@@ -9,7 +10,7 @@ module Prefaux
         redis: [],
         default_branch: "master",
         assets_prefix: "assets",
-      })
+      }.merge(Prefaux.settings.to_h))
     end
 
     def parse(args)

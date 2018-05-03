@@ -1,9 +1,14 @@
 require "ostruct"
 require "optparse"
 require "pathname"
+require_relative "config"
 
 module Prefaux
   class PushOptions < OpenStruct
+    def initialize
+      super(Prefaux.settings.to_h)
+    end
+
     def parse(args)
       parser.parse!(args.empty? ? ["--help"] : args)
       self
