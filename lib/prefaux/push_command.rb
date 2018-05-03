@@ -20,6 +20,10 @@ module Prefaux
       push_dev
       push_instance
       permit_source
+
+      puts "Note:"
+      puts "\tThis change is functional now."
+      puts "\tHowever, it has not been committed."
     end
 
     private
