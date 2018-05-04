@@ -66,7 +66,7 @@ module Prefaux
     end
 
     def run
-      system("rsync --recursive --links --quiet #{source}/* #{dest}/")
+      system("rsync --chmod=Dg+rs,g+rw --no-perms --recursive --links --quiet #{source}/* #{dest}/")
     end
 
     private
