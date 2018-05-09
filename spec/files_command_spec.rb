@@ -68,12 +68,15 @@ RSpec.describe Prefaux::FilesCommand do
     it { expect(subject["db"]["host"]).to eql("db-fake-testing") }
     it { expect(subject["db"]["port"]).to eql(3306) }
     it { expect(subject["db"]["database"]).to eql("fake-testing") }
-    it "sets the url" do
+    it "sets the db.url" do
       expect(subject["db"]["url"]).to eql(
         "mysql2://fk-tstng:" \
         "sd0f98as0f8a08as0df8a0sdfa0sd8f0a8df0asf@" \
         "db-fake-testing:3306/fake-testing"
       )
+    end
+    it "sets the solr.url" do
+      expect(subject["solr"]["url"]).to eql("http://localhost:8082/solr/mycore")
     end
   end
 

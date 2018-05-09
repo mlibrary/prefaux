@@ -17,6 +17,9 @@ module Prefaux
           port: (db_port = 3306),
           database: opts.db_name,
           url: "#{db_adapter}://#{opts.db_user_name}:#{opts.db_user_password}@#{opts.target_db_hostname}:#{db_port}/#{opts.db_name}"
+        },
+        solr: {
+          url: "http://#{opts.solr_core_host}:#{opts.solr_core_port}/solr/#{opts.solr_core_name}"
         }
       })
     end
@@ -31,7 +34,10 @@ module Prefaux
         :db_user_name,
         :db_user_password,
         :target_db_hostname,
-        :db_name
+        :db_name,
+        :solr_core_name,
+        :solr_core_port,
+        :solr_core_host
       ]
     end
 

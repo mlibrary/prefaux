@@ -21,10 +21,12 @@ apache_terminate_ssl: true
 apache_static_directories: false
 apache_mod_xsendfile: false
 apache_derivatives_path: "/some/path/fake-testing/current/tmp/derivatives"
-solr_core_name: core
+solr_core_name: mycore
 solr_core_path: "/some/fake/path/core"
 solr_core_home: "/dev/null"
 solr_core_repo: https://github.com/mlibrary/prefaux.git
+solr_core_host: localhost
+solr_core_port: 8082
 target_owner: fake-testing
 target_group: fake-testing
 target_deploy_path: "/some/path/fake-testing"
