@@ -22,8 +22,8 @@ module Prefaux
       permit_source
 
       puts "Note:"
-      puts "\tThis change is functional now."
-      puts "\tHowever, it has not been committed."
+      puts "\t* This change is functional now."
+      puts "\t* it has not been committed."
     end
 
     private
